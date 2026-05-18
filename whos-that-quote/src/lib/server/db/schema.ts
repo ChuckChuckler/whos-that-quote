@@ -1,9 +1,8 @@
+import { email } from 'better-auth';
 import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
 
-export const task = sqliteTable('task', {
+export const users = sqliteTable('users', {
 	id: text('id').primaryKey().$defaultFn(() => crypto.randomUUID()),
-	title: text('title').notNull(),
-	priority: integer('priority').notNull().default(1)
+	username: text('username').notNull(),
+	email: text('email').notNull().unique()
 });
-
-export *  from './auth.schema';
